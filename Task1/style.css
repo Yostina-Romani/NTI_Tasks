@@ -12,12 +12,10 @@
     display: inline;
     list-style: none;
     padding: 15px;
-    background:white;
-    box-shadow: 0px 4px 15px rgba(96,165,250,.15);
 }
 #header a{
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 800;
     color: #1E293B;
 
 }
@@ -59,13 +57,7 @@ border: 1px solid #DBEAFE;
    width: 100%;
    height: 100px;
 }
-#about{
-    border: solid  1px #DBEAFE;
-    height: 120px;
-    padding:10px;
-    text-align: center;
-    background: #FFFFFF;
-}
+
 #features{
     margin: 10px;
     padding: 15px;
@@ -78,15 +70,8 @@ border: 1px solid #DBEAFE;
 #features ul{
     list-style: none;
 }
-.footer{
-    color: #1E293B;
-        background: linear-gradient(135deg,#DBEAFE 0%, #FCE7F3  55%,#FFFFFF);
 
-    text-align: center;
-}
-.footer a{
-    color: #1E293B;
-}*/
+    */
 body{
    background: linear-gradient(
         to bottom,
@@ -98,13 +83,48 @@ body{
     );}
 
 
-    #hero,
-#about,
-#features,.footer{
+#hero,#features{
     background: rgba(255,255,255,.65);
     backdrop-filter: blur(10px);
     border-radius: 20px;
     text-align: center;
     margin: 10px;
     padding: 10px;
+}
+
+
+#about{
+        background: rgba(255,255,255,.65);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 10px;
+    margin:10px;
+    height: 150px;
+}
+#about h1{
+    float:left;
+}
+#about p{
+    float: inline-end;
+    width: 50%;
+}
+.footer{
+      background: rgba(255,255,255,.65);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+
+     margin: 10px;
+    padding: 10px;
+    text-align: center;
+
+}
+.footer a{
+    padding: 15px;
+    margin: 10;
+   display: inline;
+   color: black;
+   text-align: center;
+}
+#contact a:hover{
+    color:#F472B6;
 }
