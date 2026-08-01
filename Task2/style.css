@@ -1,0 +1,140 @@
+.my_button{
+    transition: .3s;
+}
+.my_button{
+    background-color: #60A5FA;
+    color: black;
+
+    
+}
+.my_button:hover{
+background-color:#f472b6;
+border-color:  #f472b6;
+transform: translateY(-3px);
+}
+.navbar{
+ 
+background: linear-gradient(135deg, #60A5FA, #A78BFA, #F472B6);
+
+}/*
+.navbar:hover{
+    background: linear-gradient(135deg, #60A5FA, #A78BFA, #F472B6);
+
+transform: translateY(-3px) scale(1.03);
+transition: .5s
+}*/
+.nav-item:hover{
+
+transform: translateX(-3px) scale(1.05);
+transition: .5s
+}
+.carousel-item{
+    position: relative;
+}
+.carousel-item::before{
+    position: absolute;
+    background: rgba(0,0,0,.45);
+    inset: 0;
+    content: "";
+}
+.carousel-item img{
+    height: 600px;
+    object-fit: cover;
+}
+.carousel-caption{
+    z-index: 2;
+    position: absolute;
+}
+.carousel-caption a:hover{
+    transform: translateY(-4px);
+}
+.carousel-caption h1{
+    font-size: clamp(2rem,5vw,4rem);
+}
+.carousel-caption p{
+    font-size: clamp(1rem,2vw,1.2rem);
+}
+@media (max-width:768px){
+    .carousel-item img{
+        height: 300px;
+    }
+}
+#why-us{
+    background: #f8f9fa;
+}
+#why-us .card{
+    border-radius: 15px;
+    transition: .3s;
+}
+#why-us .card:hover{
+    transform: translateY(-10px);
+}
+#why-us h1{
+    font-size: 50px;
+}
+.about-us{
+    padding: 80px 10%;
+}
+.about-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+}
+.about-img{
+    flex:1;
+ 
+}
+.about-img img{
+   width: 100%;
+    max-width: 500px;
+    border-radius: 20px;
+    display: block;
+    box-shadow: 0 15px 35px rgba(0,0,0,.15);
+}
+.about-content{
+    flex: 1;
+}
+.about-content h2{
+margin-bottom:20px ;
+font-size: 40px;
+}
+.about-content p{
+    color: gray;
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+.about-content ul{
+    list-style: none;
+    padding: 0;
+}
+.about-content li{
+    margin-bottom: 12px;
+}
+.about-btn{
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 30px;
+    background: #60A5FA;
+    color: white;
+    text-decoration: none;
+    transition: .3s;
+    border-radius: 30px;
+}
+.about-btn:hover{
+    background:  #F472B6;
+    transform: translateY(-4px);
+}
+@media (max-width:768px){
+.about-content ul{
+    text-align:left;
+}
+.about-container{
+    flex-direction:column;
+    text-align:center;
+}
+.about-img img{
+ margin: 0 auto;
+
+}
+}

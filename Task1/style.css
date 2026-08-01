@@ -8,6 +8,10 @@
     --text: #475569;
 --gredient:linear-gradient(135deg,#60A5FA,#F472B6)
 }
+*{
+    box-sizing: border-box;
+}
+
 #header li{
     display: inline;
     list-style: none;
@@ -43,47 +47,23 @@ button:hover{
     margin-top: 10px;
     border-radius: 3px;
     border: 1px solid var(--primary);
-    width: 100%;
+    width: calc(100% - 20px);
     height: 80px;
     margin: 10px;
 
 }
 #header ul{
-        width: 100%;
+        width:calc( 100% - 20px);
 
     display: flex;
     align-items: center;
 }
 #header ul li:nth-child(6){
-    margin-left: auto;
+    margin-left: calc(100%-10px);
     
 }
-/*
-#hero{
-    background: linear-gradient(135deg,#DBEAFE 0%, #FCE7F3  55%,#FFFFFF);
-    margin: 10px;
-   text-align: center;
-border: 1px solid #DBEAFE;
-   border-radius: 0cqb5;
-   padding: 10px;
-   width: 100%;
-   height: 100px;
-}
 
-#features{
-    margin: 10px;
-    padding: 15px;
-    height: 350px;
-    border: solid #DBEAFE 1px;
-    width: 100%;
-    background: #F8FAFC;
-   text-align: center;
-}
-#features ul{
-    list-style: none;
-}
 
-    */
 body{
    background: linear-gradient(
         to bottom,
@@ -142,4 +122,35 @@ list-style: none;
 }
 #contact a:hover{
     color:#F472B6;
+}
+/*response*/
+@media(max-width :768px){
+    *{
+        overflow: hidden;
+    }
+#header {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+#hero{
+    padding: 20px;
+    font-size: 14px;
+}
+#about{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    text-align: center;
+}
+#about p{
+    width: 100%;
+}
+.footer{
+
+    font-size: 14px;
+}
+button{
+    width: 100%;
+}
 }
