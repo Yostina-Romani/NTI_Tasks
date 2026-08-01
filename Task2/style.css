@@ -138,3 +138,13 @@ font-size: 40px;
 
 }
 }
+.offcanvas-headerr{
+   color: white;
+    background: linear-gradient(135deg,#60A5FA,#A78BFA,#F472B6);
+}
+.offcanvas-title{
+    font-weight: bold;
+}
+.offcanvas-body{
+    background-color: #f8f9fa;
+}

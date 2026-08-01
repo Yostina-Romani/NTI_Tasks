@@ -16,15 +16,21 @@
     <body>
     <nav class="navbar  navbar-expand-lg bg-primary rounded  shadow border">
         <div class="container d-flex justify-content-between">
-            <ul class="navbar-nav flex-row gap-3 align-items-center" >
-                <li class="nav-item "><a class="nav-link" href="#home">home</a></li>
-                <li class="nav-item "><a class="nav-link" href="#heroCarousel">services</a></li>
-                <li class="nav-item "><a class="nav-link" href="#about-us">about</a></li>
-                <li class="nav-item "><a class="nav-link" href="#contact">contact</a></li>
-                <li class="nav-item "><a class="btn btn-danger rounded-pill my_button" href="#button">get started</a></li>
-            </ul>
-
             <a class="navbar-brand py-3 fw-bold fs-2 " href="#">YR_Tech</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarNav">
+                <ul class="navbar-nav flex-row gap-3 align-items-center" >
+                    <li class="nav-item "><a class="nav-link" href="#home">home</a></li>
+                    <li class="nav-item "><a class="nav-link" href="#heroCarousel">services</a></li>
+                    <li class="nav-item "><a class="nav-link" href="#about-us">about</a></li>
+                    <li class="nav-item "><a class="nav-link" href="#contact">contact</a></li>
+                    <li class="nav-item "><a class="btn btn-danger rounded-pill my_button" href="#button"  id="btn-get-start" onclick="changeButtonText()">get started</a></li>
+                </ul>
+            </div>
+                <button class=" btn btn-outline-light rounded-circle" onclick="changetheme()"><i class="bi bi-moon-fill"></i></button>
+
 
         </div>
     </nav>
@@ -180,7 +186,7 @@
                     <li>Cyber Security ✔</li>
                 </ul>
             
-                <a href="#contact" class="about-btn">learn more</a>
+                <a href="#" data-bs-toggle="offcanvas" data-bs-target="#aboutCanvas" class="about-btn">learn more</a>
             </div>
         </div>
     </section>
@@ -273,5 +279,34 @@
 
         </div>
     </footer>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="aboutCanvas">
+
+        <div class="offcanvas-header">
+            <h4>About YR_Tech</h4>
+            <button type="button" data-bs-dismiss="offcanvas" class="btn-close">
+
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <h4>Our Mission</h4>
+            <p>  We help businesses grow through 
+            innovative digital solutions
+            including web development, mobile applications,
+            AI systems, and cloud services.
+            </p>
+            <hr>
+            <h5> Our Services</h5>
+            <ul>
+                <li>Web Development</li>
+                <li>Mobile Applications</li>
+                <li>Cloud Services</li>
+                <li>Cyber Security</li>
+
+            </ul>
+            <a href="#contact" class="btn btn-primary w-100">Contact Us</a>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
 </body>
 </html>
