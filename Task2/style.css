@@ -138,7 +138,7 @@ font-size: 40px;
 
 }
 }
-.offcanvas-headerr{
+.offcanvas-header{
    color: white;
     background: linear-gradient(135deg,#60A5FA,#A78BFA,#F472B6);
 }
@@ -147,4 +147,168 @@ font-size: 40px;
 }
 .offcanvas-body{
     background-color: #f8f9fa;
+}
+.hero{
+    background: linear-gradient(135deg,
+    rgba(96,165,250,.12),
+    rgba(167,139,250,.12),
+    rgba(244,114,182,.12));
+
+    padding: 100px 10%;
+}
+.my_button,
+.about-btn,
+.btn-primary{
+    background: linear-gradient(135deg,#60A5FA,#A78BFA,#F472B6);
+    border: none;
+    color: white;
+    transition: .3s;
+}
+.my_button:hover,
+.about-btn:hover,
+.btn-primary:hover{
+
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(167,139,250,.4);
+
+    background: linear-gradient(135deg,
+    #4F9CF9,
+    #8B5CF6,
+    #EC4899);
+}
+#why-us{
+    background: linear-gradient(to bottom,
+    #ffffff,
+    #f6f7ff);
+}
+#why-us .card{
+    border: none;
+    border-radius: 18px;
+    transition: .3s;
+}
+
+#why-us .card:hover{
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(96,165,250,.2);
+}
+footer{
+    background: linear-gradient(135deg,
+    #60A5FA,
+    #A78BFA,
+    #F472B6);
+
+    color: white;
+    border-radius: 20px 20px 0 0;
+}
+footer p,
+footer label,
+footer h2,
+footer h3{
+    color:white;
+}
+.offcanvas-header{
+    background: linear-gradient(135deg,
+    #60A5FA,
+    #A78BFA,
+    #F472B6);
+
+    color:white;
+}
+.offcanvas-body{
+    background:#f8f9ff;
+}
+
+.section-title{
+
+    background: linear-gradient(135deg,#60A5FA,#A78BFA,#F472B6);
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.nav-link{
+    color:white;
+    transition:.3s;
+}
+
+.nav-link:hover{
+    color:#FFF5FA;
+}
+#work-ways .col-lg-5,
+#work-ways .col-lg-7{
+    transition: .3s;
+}
+
+#work-ways .col-lg-5:hover,
+#work-ways .col-lg-7:hover{
+    transform: translateY(-6px);
+}
+.dark-mode #why-us{
+    background: #212529;
+}
+
+.dark-mode #why-us .card{
+    background: #343a40;
+    color: white;
+}
+
+.dark-mode #why-us p{
+    color: #dee2e6;
+}
+
+.dark-mode #why-us h1,
+.dark-mode #why-us h4{
+    color: white;
+}
+.dark-mode .hero{
+    background: #121212;
+}
+
+.dark-mode .hero p{
+    color: #d1d5db !important;
+}
+.dark-mode .about-us{
+    background: #121212;
+}
+
+.dark-mode .about-content p,
+.dark-mode .about-content li{
+    color: #d1d5db;
+}
+.dark-mode #work-ways{
+    background: #121212;
+}
+
+.dark-mode #work-ways p,
+.dark-mode #work-ways h2,
+.dark-mode #work-ways h1,
+.dark-mode #work-ways span{
+    color: white !important;
+}
+
+.dark-mode #work-ways .text-secondary{
+    color: #d1d5db !important;
+}
+.dark-mode footer{
+    background: #1f2937;
+}
+
+.dark-mode footer p,
+.dark-mode footer h2,
+.dark-mode footer h3,
+.dark-mode footer label{
+    color: white !important;
+}
+.dark-mode .offcanvas-body{
+    background: #212529;
+    color: white;
+}
+.dark-mode .form-control{
+    background: #343a40;
+    color: white;
+    border-color: #495057;
+}
+
+.dark-mode .form-control::placeholder{
+    color: #adb5bd;
 }

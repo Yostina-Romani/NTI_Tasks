@@ -1,5 +1,5 @@
 function changetheme() {
-    document.body.classList.toggle("bg-dark");
+    document.body.classList.toggle("dark-mode");
     document.body.classList.toggle("text-white");
 }
 
