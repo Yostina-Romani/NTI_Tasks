@@ -1,318 +1,492 @@
 /* =========================================================
    YR_TECH — MAIN JAVASCRIPT
-   Dark Mode + Navbar + Scroll + Back To Top
-   ========================================================= */
+   Premium Version
+========================================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
+
 
     /* =====================================================
-       01. DARK MODE
-       ===================================================== */
+                         ELEMENTS
+    ====================================================== */
 
-    const themeToggle = document.querySelector(".theme-toggle");
+    const body = document.body;
 
-    // Load saved theme
-    const savedTheme = localStorage.getItem("theme");
+    const themeToggle =
+        document.getElementById("themeToggle");
+
+    const navbar =
+        document.querySelector(".navbar");
+
+    const backToTop =
+        document.getElementById("backToTop");
+
+    const contactForm =
+        document.getElementById("contactForm");
+
+    const newsletterForm =
+        document.getElementById("newsletterForm");
+
+    const currentYear =
+        document.getElementById("currentYear");
+
+
+
+    /* =====================================================
+                         DARK MODE
+    ====================================================== */
+
+    const savedTheme =
+        localStorage.getItem("theme");
+
 
     if (savedTheme === "dark") {
-        document.body.classList.add("dark-mode");
+
+        body.classList.add("dark-mode");
+
     }
+
 
     function updateThemeIcon() {
 
         if (!themeToggle) return;
 
-        const icon = themeToggle.querySelector("i");
+        const icon =
+            themeToggle.querySelector("i");
 
         if (!icon) return;
 
-        if (document.body.classList.contains("dark-mode")) {
 
-            // Moon -> Sun
-            icon.classList.remove("fa-moon");
-            icon.classList.add("fa-sun");
+        if (body.classList.contains("dark-mode")) {
 
-            themeToggle.setAttribute("aria-label", "Switch to light mode");
-            themeToggle.setAttribute("title", "Light Mode");
+            icon.className =
+                "fa-solid fa-sun";
+
+            themeToggle.setAttribute(
+                "aria-label",
+                "Switch to light mode"
+            );
+
+            themeToggle.setAttribute(
+                "title",
+                "Light Mode"
+            );
 
         } else {
 
-            // Sun -> Moon
-            icon.classList.remove("fa-sun");
-            icon.classList.add("fa-moon");
+            icon.className =
+                "fa-solid fa-moon";
 
-            themeToggle.setAttribute("aria-label", "Switch to dark mode");
-            themeToggle.setAttribute("title", "Dark Mode");
+            themeToggle.setAttribute(
+                "aria-label",
+                "Switch to dark mode"
+            );
+
+            themeToggle.setAttribute(
+                "title",
+                "Dark Mode"
+            );
         }
     }
+
 
     updateThemeIcon();
 
 
     if (themeToggle) {
 
-        themeToggle.addEventListener("click", function () {
+        themeToggle.addEventListener(
+            "click",
+            () => {
 
-            document.body.classList.toggle("dark-mode");
+                body.classList.toggle(
+                    "dark-mode"
+                );
 
-            const isDark =
-                document.body.classList.contains("dark-mode");
 
-            // Save theme
-            localStorage.setItem(
-                "theme",
-                isDark ? "dark" : "light"
-            );
+                const isDark =
+                    body.classList.contains(
+                        "dark-mode"
+                    );
 
-            // Update icon
-            updateThemeIcon();
-        });
+
+                localStorage.setItem(
+                    "theme",
+                    isDark ? "dark" : "light"
+                );
+
+
+                updateThemeIcon();
+
+            }
+        );
+
     }
 
 
+
     /* =====================================================
-       02. NAVBAR SCROLL EFFECT
-       ===================================================== */
+                     NAVBAR SCROLL
+    ====================================================== */
 
-    const navbar = document.querySelector(".navbar");
-
-    function handleNavbarScroll() {
+    function handleNavbar() {
 
         if (!navbar) return;
 
-        if (window.scrollY > 20) {
+
+        if (window.scrollY > 30) {
 
             navbar.style.boxShadow =
-                "0 8px 30px rgba(15, 23, 42, 0.08)";
+                "0 10px 40px rgba(15,23,42,.08)";
 
         } else {
 
-            navbar.style.boxShadow = "none";
+            navbar.style.boxShadow =
+                "none";
+
         }
+
     }
 
-    window.addEventListener("scroll", handleNavbarScroll);
 
-    handleNavbarScroll();
+    window.addEventListener(
+        "scroll",
+        handleNavbar
+    );
+
+
+    handleNavbar();
+
 
 
     /* =====================================================
-       03. ACTIVE NAVBAR LINK
-       ===================================================== */
+                      NAVIGATION
+    ====================================================== */
 
-    const navLinks = document.querySelectorAll(
-        '.navbar-nav .nav-link[href^="#"]'
-    );
+    const navLinks =
+        document.querySelectorAll(
+            '.navbar-nav .nav-link[href^="#"]'
+        );
 
-    const sections = document.querySelectorAll("section[id]");
+
+    navLinks.forEach(link => {
+
+        link.addEventListener(
+            "click",
+            event => {
+
+                const targetId =
+                    link.getAttribute("href");
+
+
+                if (
+                    !targetId ||
+                    targetId === "#"
+                ) {
+
+                    return;
+
+                }
+
+
+                const target =
+                    document.querySelector(
+                        targetId
+                    );
+
+
+                if (!target) return;
+
+
+                event.preventDefault();
+
+
+                const navbarHeight =
+                    navbar
+                        ? navbar.offsetHeight
+                        : 0;
+
+
+                const targetPosition =
+                    target.getBoundingClientRect().top +
+                    window.scrollY -
+                    navbarHeight;
+
+
+                window.scrollTo({
+
+                    top: targetPosition,
+
+                    behavior: "smooth"
+
+                });
+
+
+                /*
+
+                    Close Bootstrap mobile menu
+
+                */
+
+                const collapse =
+                    document.getElementById(
+                        "mainNavbar"
+                    );
+
+
+                if (
+                    collapse &&
+                    collapse.classList.contains(
+                        "show"
+                    )
+                ) {
+
+                    const bsCollapse =
+                        bootstrap.Collapse
+                            .getInstance(
+                                collapse
+                            );
+
+
+                    if (bsCollapse) {
+
+                        bsCollapse.hide();
+
+                    }
+
+                }
+
+            }
+        );
+
+    });
+
+
+
+    /* =====================================================
+                    ACTIVE NAVIGATION
+    ====================================================== */
+
+    const sections =
+        document.querySelectorAll(
+            "section[id]"
+        );
+
 
     function updateActiveLink() {
 
-        let currentSection = "";
+        let current = "";
 
-        sections.forEach(function (section) {
+
+        sections.forEach(section => {
 
             const sectionTop =
-                section.offsetTop - 150;
+                section.offsetTop - 180;
+
 
             const sectionHeight =
                 section.offsetHeight;
 
+
             if (
                 window.scrollY >= sectionTop &&
-                window.scrollY < sectionTop + sectionHeight
+                window.scrollY <
+                sectionTop + sectionHeight
             ) {
-                currentSection = section.getAttribute("id");
+
+                current =
+                    section.getAttribute(
+                        "id"
+                    );
+
             }
+
         });
 
-        navLinks.forEach(function (link) {
 
-            link.classList.remove("active");
+        navLinks.forEach(link => {
 
-            const href =
-                link.getAttribute("href");
+            link.classList.remove(
+                "active"
+            );
 
-            if (href === "#" + currentSection) {
-                link.classList.add("active");
+
+            if (
+                link.getAttribute("href") ===
+                "#" + current
+            ) {
+
+                link.classList.add(
+                    "active"
+                );
+
             }
+
         });
+
     }
+
 
     window.addEventListener(
         "scroll",
         updateActiveLink
     );
 
+
     updateActiveLink();
 
 
-    /* =====================================================
-       04. SMOOTH SCROLL
-       ===================================================== */
-
-    navLinks.forEach(function (link) {
-
-        link.addEventListener("click", function (event) {
-
-            const targetId =
-                this.getAttribute("href");
-
-            if (
-                !targetId ||
-                targetId === "#" ||
-                !targetId.startsWith("#")
-            ) {
-                return;
-            }
-
-            const target =
-                document.querySelector(targetId);
-
-            if (!target) return;
-
-            event.preventDefault();
-
-            const navbarHeight =
-                navbar ? navbar.offsetHeight : 0;
-
-            const targetPosition =
-                target.getBoundingClientRect().top +
-                window.scrollY -
-                navbarHeight;
-
-            window.scrollTo({
-                top: targetPosition,
-                behavior: "smooth"
-            });
-
-
-            /* Close Bootstrap mobile menu */
-
-            const navbarCollapse =
-                document.querySelector(".navbar-collapse");
-
-            if (
-                navbarCollapse &&
-                navbarCollapse.classList.contains("show")
-            ) {
-
-                const toggler =
-                    document.querySelector(".navbar-toggler");
-
-                if (toggler) {
-                    toggler.click();
-                }
-            }
-        });
-    });
-
 
     /* =====================================================
-       05. BACK TO TOP
-       ===================================================== */
+                      BACK TO TOP
+    ====================================================== */
 
-    const backToTop =
-        document.querySelector(".back-to-top");
-
-    function handleBackToTop() {
+    function updateBackToTop() {
 
         if (!backToTop) return;
 
+
         if (window.scrollY > 500) {
 
-            backToTop.classList.add("show");
+            backToTop.classList.add(
+                "show"
+            );
 
         } else {
 
-            backToTop.classList.remove("show");
+            backToTop.classList.remove(
+                "show"
+            );
+
         }
+
     }
+
 
     window.addEventListener(
         "scroll",
-        handleBackToTop
+        updateBackToTop
     );
 
-    handleBackToTop();
+
+    updateBackToTop();
 
 
     if (backToTop) {
 
         backToTop.addEventListener(
             "click",
-            function () {
+            () => {
 
                 window.scrollTo({
+
                     top: 0,
+
                     behavior: "smooth"
+
                 });
 
             }
         );
+
     }
 
 
-    /* =====================================================
-       06. CONTACT FORM
-       ===================================================== */
 
-    const contactForm =
-        document.querySelector(".contact-form");
+    /* =====================================================
+                       CONTACT FORM
+    ====================================================== */
 
     if (contactForm) {
 
         contactForm.addEventListener(
             "submit",
-            function (event) {
+            event => {
 
                 event.preventDefault();
 
+
                 const name =
-                    contactForm.querySelector(
-                        'input[name="name"]'
+                    document.getElementById(
+                        "name"
                     );
+
 
                 const email =
-                    contactForm.querySelector(
-                        'input[name="email"]'
+                    document.getElementById(
+                        "email"
                     );
+
+
+                const subject =
+                    document.getElementById(
+                        "subject"
+                    );
+
 
                 const message =
-                    contactForm.querySelector(
-                        "textarea"
+                    document.getElementById(
+                        "message"
                     );
 
 
-                /* Basic validation */
-
                 if (
-                    name &&
-                    name.value.trim() === ""
+                    !name.value.trim()
                 ) {
-                    alert("Please enter your name.");
+
+                    alert(
+                        "Please enter your name."
+                    );
+
                     name.focus();
+
                     return;
+
                 }
 
 
                 if (
-                    email &&
-                    email.value.trim() === ""
+                    !email.value.trim()
                 ) {
-                    alert("Please enter your email.");
+
+                    alert(
+                        "Please enter your email."
+                    );
+
                     email.focus();
+
                     return;
+
                 }
 
 
                 if (
-                    message &&
-                    message.value.trim() === ""
+                    !subject.value.trim()
                 ) {
-                    alert("Please enter your message.");
-                    message.focus();
+
+                    alert(
+                        "Please enter a subject."
+                    );
+
+                    subject.focus();
+
                     return;
+
+                }
+
+
+                if (
+                    !message.value.trim()
+                ) {
+
+                    alert(
+                        "Please enter your message."
+                    );
+
+                    message.focus();
+
+                    return;
+
                 }
 
 
@@ -320,53 +494,51 @@ document.addEventListener("DOMContentLoaded", function () {
                     "Thank you! Your message has been received."
                 );
 
+
                 contactForm.reset();
+
             }
         );
+
     }
 
 
-    /* =====================================================
-       07. NEWSLETTER FORM
-       ===================================================== */
 
-    const newsletterForm =
-        document.querySelector(".newsletter-form");
+    /* =====================================================
+                      NEWSLETTER
+    ====================================================== */
 
     if (newsletterForm) {
 
         newsletterForm.addEventListener(
             "submit",
-            function (event) {
+            event => {
 
                 event.preventDefault();
+
 
                 const input =
                     newsletterForm.querySelector(
                         "input"
                     );
 
+
                 if (!input) return;
+
 
                 const email =
                     input.value.trim();
-
-                if (email === "") {
-
-                    alert(
-                        "Please enter your email address."
-                    );
-
-                    input.focus();
-
-                    return;
-                }
 
 
                 const emailPattern =
                     /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-                if (!emailPattern.test(email)) {
+
+                if (
+                    !emailPattern.test(
+                        email
+                    )
+                ) {
 
                     alert(
                         "Please enter a valid email address."
@@ -375,6 +547,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     input.focus();
 
                     return;
+
                 }
 
 
@@ -382,40 +555,70 @@ document.addEventListener("DOMContentLoaded", function () {
                     "Thank you for subscribing!"
                 );
 
+
                 newsletterForm.reset();
+
             }
         );
+
     }
 
 
+
     /* =====================================================
-       08. SCROLL REVEAL
-       ===================================================== */
+                     SCROLL REVEAL
+    ====================================================== */
 
     const revealElements =
         document.querySelectorAll(
-            ".service-card, .why-card, .work-item, .about-content, .about-image-wrapper"
+            `
+            .service-card,
+            .why-card,
+            .process-card,
+            .about-content,
+            .about-visual,
+            .contact-info,
+            .contact-form-wrapper
+            `
         );
 
-    if ("IntersectionObserver" in window) {
+
+    if (
+        "IntersectionObserver" in window
+    ) {
 
         const observer =
             new IntersectionObserver(
-                function (entries, observer) {
+                entries => {
 
-                    entries.forEach(function (entry) {
+                    entries.forEach(
+                        entry => {
 
-                        if (entry.isIntersecting) {
+                            if (
+                                entry.isIntersecting
+                            ) {
 
-                            entry.target.style.opacity = "1";
-                            entry.target.style.transform =
-                                "translateY(0)";
+                                entry.target.classList.add(
+                                    "visible"
+                                );
 
-                            observer.unobserve(
-                                entry.target
-                            );
+
+                                entry.target.style.opacity =
+                                    "1";
+
+
+                                entry.target.style.transform =
+                                    "translateY(0)";
+
+
+                                observer.unobserve(
+                                    entry.target
+                                );
+
+                            }
+
                         }
-                    });
+                    );
 
                 },
                 {
@@ -424,63 +627,92 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
-        revealElements.forEach(function (element) {
+        revealElements.forEach(
+            element => {
 
-            element.style.opacity = "0";
+                element.style.opacity =
+                    "0";
 
-            element.style.transform =
-                "translateY(25px)";
 
-            element.style.transition =
-                "opacity 0.7s ease, transform 0.7s ease";
+                element.style.transform =
+                    "translateY(25px)";
 
-            observer.observe(element);
-        });
+
+                element.style.transition =
+                    "opacity .7s ease, transform .7s ease";
+
+
+                observer.observe(
+                    element
+                );
+
+            }
+        );
+
     }
 
 
-    /* =====================================================
-       09. PREVENT EMPTY LINKS
-       ===================================================== */
-
-    document
-        .querySelectorAll('a[href="#"]')
-        .forEach(function (link) {
-
-            link.addEventListener(
-                "click",
-                function (event) {
-
-                    event.preventDefault();
-
-                }
-            );
-        });
-
 
     /* =====================================================
-       10. YEAR IN FOOTER
-       ===================================================== */
+                         YEAR
+    ====================================================== */
 
-    const yearElement =
-        document.querySelector(
-            "[data-current-year]"
-        );
+    if (currentYear) {
 
-    if (yearElement) {
-
-        yearElement.textContent =
+        currentYear.textContent =
             new Date().getFullYear();
 
     }
 
 
+
     /* =====================================================
-       11. INITIALIZE
-       ===================================================== */
+                     KEYBOARD ACCESSIBILITY
+    ====================================================== */
+
+    document.addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key === "Escape"
+            ) {
+
+                const openOffcanvas =
+                    document.querySelector(
+                        ".offcanvas.show"
+                    );
+
+
+                if (openOffcanvas) {
+
+                    const instance =
+                        bootstrap.Offcanvas
+                            .getInstance(
+                                openOffcanvas
+                            );
+
+
+                    if (instance) {
+
+                        instance.hide();
+
+                    }
+
+                }
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+                         READY
+    ====================================================== */
 
     console.log(
-        "YR_TECH website initialized successfully."
+        "YR_Tech Premium Website initialized successfully."
     );
 
 });
